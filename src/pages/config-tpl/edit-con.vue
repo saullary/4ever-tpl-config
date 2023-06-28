@@ -30,6 +30,12 @@
       :rules="[(val) => (val && val.length > 0) || '不能为空']"
     />
     <q-input
+      type="textarea"
+      v-model="form.configJson"
+      label="config.json"
+      :rules="[(val) => (val && val.length > 0) || '不能为空']"
+    />
+    <q-input
       v-model="form.preview"
       label="预览链接"
       :rules="[(val) => /^http/.test(val) || '预览链接不正确']"
@@ -68,7 +74,7 @@ export default {
     async onSubmit() {
       try {
         const valid = await this.$refs.form.validate();
-        if (!valid) return;
+        // if (!valid) return;
         const body = {
           ...this.form,
           action: this.form.id ? 0 : 1,
@@ -82,7 +88,7 @@ export default {
           delete body.dir;
           body.unzipDir = "dist";
         }
-        console.log(valid, this.form.file);
+        console.log(valid, body);
       } catch (error) {
         console.log(error);
       }
