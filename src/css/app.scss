@@ -1,0 +1,16 @@
+// app global css in SCSS form
+
+.d-n {
+  display: none;
+}
+.d-b {
+  display: block;
+}
+.d-ib {
+  display: inline-block;
+}
+.line-1 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
