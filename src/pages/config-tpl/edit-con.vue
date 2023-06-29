@@ -40,14 +40,14 @@
       label="预览链接"
       :rules="[(val) => /^http/.test(val) || '预览链接不正确']"
     />
-    <q-input
-      v-model="form.githubUrl"
-      label="Github链接"
-      :rules="[(val) => /^http/.test(val) || 'Github链接不正确']"
-    />
 
     <div class="ta-r q-mt-md">
-      <q-btn color="primary" label="提交" @click="onSubmit"></q-btn>
+      <q-btn
+        :loading="posting"
+        color="primary"
+        label="提交"
+        @click="onSubmit"
+      ></q-btn>
     </div>
   </q-form>
 </template>
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       form: {},
+      posting: false,
     };
   },
   watch: {
@@ -67,6 +68,7 @@ export default {
       this.initForm();
     },
   },
+
   created() {
     this.initForm();
   },
@@ -74,10 +76,10 @@ export default {
     async onSubmit() {
       try {
         const valid = await this.$refs.form.validate();
-        // if (!valid) return;
+        if (!valid) return;
+        const { id } = this.row;
         const body = {
           ...this.form,
-          action: this.form.id ? 0 : 1,
         };
         if (body.file) {
           if (body.dir) {
@@ -87,11 +89,42 @@ export default {
           }
           delete body.dir;
           body.unzipDir = "dist";
+        } else {
+          if (!id) throw new Error("请上传模板zip压缩包");
         }
-        console.log(valid, body);
+        if (body.configJson) {
+          const json = JSON.parse(body.configJson);
+          if (!Array.isArray(json.config)) {
+            throw new Error("config.json格式有误");
+          }
+        }
+        const form = new FormData();
+        let len = 0;
+
+        for (const key in body) {
+          const val = body[key];
+          if (!val) continue;
+          if (id && val === this.row[key]) continue;
+          form.append(key, val);
+          len += 1;
+          // console.log(key, val);
+        }
+        if (!len) {
+          throw new Error("无修改");
+        }
+        if (id) {
+          form.append("id", id);
+        }
+        form.append("action", id ? 0 : 1);
+        console.log(body, len, form);
+        this.posting = true;
+        await this.$http.post("/template/web3/upload", form);
+        this.$emit("done");
       } catch (error) {
         console.log(error);
+        window.alert(error.message);
       }
+      this.posting = false;
     },
     initForm() {
       this.form = {

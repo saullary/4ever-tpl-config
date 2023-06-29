@@ -19,7 +19,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> 4EVERLAND </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
@@ -41,22 +41,10 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
-  {
-    title: "Home",
-    caption: "github.com/quasarframework",
+    title: "模板配置",
+    // caption: "github.com/quasarframework",
     icon: "code",
     link: "#/",
-  },
-  {
-    title: "Config",
-    caption: "",
-    icon: "chat",
-    link: "#/config",
   },
 ];
 

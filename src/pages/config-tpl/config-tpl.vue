@@ -66,14 +66,14 @@ import EditCon from "./edit-con.vue";
               v-if="row.preview"
               flat
               color="primary"
-              label="Preview link"
+              label="链接"
               :href="row.preview"
               target="_blank"
               no-caps
               size="sm"
             ></q-btn>
           </q-td>
-          <q-td key="githubUrl">
+          <!-- <q-td key="githubUrl">
             <q-btn
               v-if="row.githubUrl"
               flat
@@ -84,7 +84,7 @@ import EditCon from "./edit-con.vue";
               no-caps
               size="sm"
             ></q-btn>
-          </q-td>
+          </q-td> -->
           <q-td key="action">
             <q-btn
               color="primary"
@@ -122,7 +122,7 @@ import EditCon from "./edit-con.vue";
           <div class="text-h5">{{ curRow.id ? "编辑记录" : "添加记录" }}</div>
         </q-card-section>
         <q-card-section>
-          <edit-con :row="curRow"></edit-con>
+          <edit-con :row="curRow" @done="onEditDone"></edit-con>
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -167,11 +167,11 @@ export default {
           label: "示例链接",
           align: "left",
         },
-        {
-          field: "githubUrl",
-          label: "Github地址",
-          align: "left",
-        },
+        // {
+        //   field: "githubUrl",
+        //   label: "Github地址",
+        //   align: "left",
+        // },
         {
           field: "action",
           label: "操作",
@@ -185,6 +185,11 @@ export default {
     this.getList();
   },
   methods: {
+    onEditDone() {
+      this.showEdit = false;
+      window.$notify("已更新");
+      this.getList();
+    },
     onEdit(row) {
       this.curRow = row;
       this.showEdit = true;

@@ -3,11 +3,11 @@ const routes = [
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/IndexPage.vue") },
       {
-        path: "config",
+        path: "",
         component: () => import("pages/config-tpl/config-tpl.vue"),
       },
+      { path: "test", component: () => import("pages/IndexPage.vue") },
     ],
   },
 
