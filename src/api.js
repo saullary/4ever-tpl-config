@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const http = Axios.create({
-  baseURL: "https://h.foreverland.xyz",
+  baseURL: process.env.VUE_APP_HOST_URL || "https://h.foreverland.xyz",
   headers: {
     Authorization: localStorage.token, // "",
   },
