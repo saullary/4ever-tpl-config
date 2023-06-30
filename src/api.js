@@ -1,7 +1,11 @@
 import Axios from "axios";
 
+let baseURL = "https://h.foreverland.xyz";
+if (/tpl-config/.test(location.href)) {
+  baseURL = "https://api.4everland.org";
+}
 const http = Axios.create({
-  baseURL: process.env.VUE_APP_HOST_URL || "https://h.foreverland.xyz",
+  baseURL,
   headers: {
     Authorization: localStorage.token, // "",
   },
