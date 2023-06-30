@@ -15,6 +15,7 @@ import EditCon from "./edit-con.vue";
     >
       <template v-slot:top-right>
         <q-btn
+          glossy
           outline
           color="primary"
           :loading="loading"
@@ -22,6 +23,8 @@ import EditCon from "./edit-con.vue";
           @click="getList"
         />
         <q-btn
+          push
+          glossy
           color="primary"
           label="添加记录"
           class="q-ml-md"
@@ -38,14 +41,14 @@ import EditCon from "./edit-con.vue";
           <q-td key="name">
             {{ row.name }}
           </q-td>
-          <q-td key="backgroundImage">
+          <q-td key="backgroundImage" @click="showImg(row)">
             <q-img
               v-if="row.backgroundImage"
               :src="row.backgroundImage"
               height="250"
             ></q-img>
           </q-td>
-          <q-td key="desc">
+          <q-td key="desc" @click="showImg(row)">
             <div style="max-width: 200px" class="line-1">
               {{ row.desc }}
             </div>
@@ -54,7 +57,6 @@ import EditCon from "./edit-con.vue";
             <q-btn
               v-if="row.configJson"
               outline
-              color="primary"
               label="config.json"
               size="sm"
               @click="onConfigJson(row)"
@@ -185,6 +187,15 @@ export default {
     this.getList();
   },
   methods: {
+    showImg(row) {
+      window.alert(
+        `<p class="q-mb-md gray lh-12 text-subtitle1">${row.desc}</p><img src="${row.backgroundImage}" width="100%" />`,
+        row.name,
+        {
+          html: true,
+        }
+      );
+    },
     onEditDone() {
       this.showEdit = false;
       window.$notify("已更新");

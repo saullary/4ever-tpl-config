@@ -15,10 +15,11 @@ export default {
         position,
       });
     };
-    window.alert = (message, title = "提示") => {
+    window.alert = (message, title = "提示", opts = {}) => {
       return $q.dialog({
         title,
         message,
+        ...opts,
       });
     };
     window.$prompt = (opts) => {
