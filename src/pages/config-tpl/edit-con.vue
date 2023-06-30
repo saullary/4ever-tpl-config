@@ -3,18 +3,18 @@
     <div class="row">
       <q-input
         class="col"
-        v-model="form.name"
+        v-model.trim="form.name"
         label="模板名称"
         :rules="[(val) => (val && val.length > 0) || '不能为空']"
       />
       <div class="q-ml-md" style="width: 150px">
-        <q-file v-model="form.file" label=".zip压缩包" />
+        <q-file v-model="form.file" label=".zip压缩包" accept=".zip" />
       </div>
     </div>
     <div class="row">
       <q-input
         class="col"
-        v-model="form.backgroundImage"
+        v-model.trim="form.backgroundImage"
         label="封面图链接"
         :rules="[(val) => /^http/.test(val) || '封面图链接不正确']"
       />
@@ -36,7 +36,7 @@
       :rules="[(val) => (val && val.length > 0) || '不能为空']"
     />
     <q-input
-      v-model="form.preview"
+      v-model.trim="form.preview"
       label="预览链接"
       :rules="[(val) => /^http/.test(val) || '预览链接不正确']"
     />
