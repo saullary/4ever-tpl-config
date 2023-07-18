@@ -119,7 +119,7 @@ import EditCon from "./edit-con.vue";
     </q-dialog>
 
     <q-dialog v-model="showEdit">
-      <q-card style="width: 590px">
+      <q-card style="width: 595px">
         <q-card-section>
           <div class="text-h5">{{ curRow.id ? "编辑记录" : "添加记录" }}</div>
         </q-card-section>
