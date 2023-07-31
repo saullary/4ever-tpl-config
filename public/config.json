@@ -1,0 +1,62 @@
+{
+  "config": [
+    {
+      "name": "Website name",
+      "options": [
+        {
+          "type": "text",
+          "key": "title",
+          "value": "",
+          "placeholder": "Enter Website name"
+        }
+      ]
+    },
+    {
+      "name": "Logo",
+      "options": [
+        {
+          "type": "text",
+          "key": "logo",
+          "value": "",
+          "placeholder": "Enter logo URL",
+          "regExp": "^http"
+        }
+      ]
+    },
+    {
+      "name": "Bio",
+      "options": [
+        {
+          "type": "text",
+          "key": "bio",
+          "value": "",
+          "placeholder": "Enter the Bio",
+          "maxLen": 100
+        }
+      ]
+    },
+    {
+      "name": "Banners",
+      "options": [
+        {
+          "type": "text",
+          "key": "img1",
+          "value": "",
+          "placeholder": "Banner Image#1"
+        },
+        {
+          "type": "text",
+          "key": "img2",
+          "value": "",
+          "placeholder": "Banner Image#2"
+        },
+        {
+          "type": "text",
+          "key": "img3",
+          "value": "",
+          "placeholder": "Banner Image#3"
+        }
+      ]
+    }
+  ]
+}

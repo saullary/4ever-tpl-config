@@ -1,6 +1,6 @@
 const routes = [
   {
-    path: "/",
+    path: "/config",
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
@@ -10,7 +10,10 @@ const routes = [
       { path: "test", component: () => import("pages/IndexPage.vue") },
     ],
   },
-
+  {
+    path: "/",
+    component: () => import("pages/chain-list.vue"),
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

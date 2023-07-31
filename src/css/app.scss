@@ -1,5 +1,18 @@
 // app global css in SCSS form
+@import "flex";
 
+body {
+  font-size: 16px;
+  line-height: 1;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #429efc;
+}
 .d-n {
   display: none;
 }
@@ -20,10 +33,21 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
+.fz-14 {
+  font-size: 14px;
+}
+.fz-18 {
+  font-size: 18px;
+}
+.fz-22 {
+  font-size: 22px;
+}
 .gray {
   color: #999;
 }
 .lh-12 {
   line-height: 1.2;
+}
+.bdrs-5 {
+  border-radius: 5px;
 }
